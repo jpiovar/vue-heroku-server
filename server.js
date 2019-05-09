@@ -1,6 +1,8 @@
 var express = require('express');
+// const http = require('http');
 var bodyParser = require('body-parser');
 var path = require('path');
+
 
 var cors = require('cors');
 
@@ -41,7 +43,28 @@ p1.then(function(jj){console.log(jj);});
 var app = express();
 
 app.use(cors());
-//app.use(bodyParser());
+// app.use(bodyParser());
+
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
+
+// app.use((req, res, next) => {
+//     const error = new Error("Not found");
+//     error.status = 404;
+//     next(error);
+// });
+
+// app.use((error, req, res, next) => {
+//     res.status(error.status || 500 );
+//     res.json({
+//         error: {
+//             message: error.message
+//         }
+//     })
+// });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -50,22 +73,24 @@ app.use(bodyParser.json());
 
 
 
-app.get('*',function(req, res){
-
-     //res.sendFile( __dirname + "/" + "index.html" );
-     res.sendFile( __dirname + '/public/index.html' );
-});
+// app.get('*',function(req, res){
+//     console.log(req);
+//      console.log('* get called');
+//      res.sendFile( __dirname + '/public/index.html' );
+// });
 
 
 app.get('/city',function(req, res){
-     //res.sendFile( __dirname + "/" + "index.html" );
      console.log('city');
-     res.sendFile( __dirname + '/public/index.html' );
+     res.status(200).sendFile( __dirname + '/public/index.html' );
 });
 
 
 
-
+app.get('/orders', (req, res, next) => {
+    console.log('orders');
+    res.status(200).json('orders ok');
+});
 
 
 app.post('/add',function(req, res){

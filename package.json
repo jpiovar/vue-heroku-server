@@ -1,19 +1,22 @@
 {
-    "name": "vue_server_node",
-    "version": "1.0.0",
-    "description": "vue server node",
-    "main": "server.js",
-    "dependencies": {
-      "body-parser": "^1.16.0",
-      "cors": "^2.8.1",
-      "express": "^4.14.1",
-      "native-promise-only": "^0.8.1",
-      "path": "^0.12.7"
-    },
-    "devDependencies": {},
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node server.js"
-    },
-    "author": "jp"
-  }
+  "name": "vue_server_node",
+  "version": "1.0.0",
+  "description": "vue server node",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "cors": "^2.8.1",
+    "express": "^4.16.4",
+    "native-promise-only": "^0.8.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "autostart": "nodemon server.js"
+  },
+  "author": "jp"
+}
