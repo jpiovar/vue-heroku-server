@@ -3,6 +3,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 
+const mockCredentials = require('./mockData/allowedCredentials.json');
+
 
 var cors = require('cors');
 
@@ -92,6 +94,11 @@ app.get('/api/orders', (req, res, next) => {
     res.status(200).json('orders ok');
 });
 
+app.get('/api/users', (req, res, next) => {
+  console.log('users', mockCredentials);
+  let users = mockCredentials;
+  res.status(200).json(users);
+});
 
 app.post('/add',function(req, res){
   var thing = req.body.thingInput;
