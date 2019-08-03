@@ -87,7 +87,7 @@ app.get('/city',function(req, res){
 
 
 
-app.get('/orders', (req, res, next) => {
+app.get('/api/orders', (req, res, next) => {
     console.log('orders');
     res.status(200).json('orders ok');
 });
