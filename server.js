@@ -100,6 +100,11 @@ app.get('/api/users', (req, res, next) => {
   res.status(200).json(users);
 });
 
+app.get('/api/authenticate', (req, res, next) => {
+  console.log('authenticate', req.query.params);
+  res.status(200).json('authentication done');
+});
+
 app.post('/add',function(req, res){
   var thing = req.body.thingInput;
   //var thingDoc = new thingModel({thing: thing});
