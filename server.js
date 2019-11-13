@@ -117,8 +117,10 @@ app.get('/api/authenticate', (req, res, next) => {
       name: up[0].name,
       email: up[0].email
     });
-  } else {
-    res.status(401).json({ statusCase: 'failed', msg: 'authentication failed' });
+  } else if (up && up.length === 0) {
+    res.status(202).json({
+      statusCase: 'failed',
+      msg: 'authentication failed, wrong credentials' });
   }
 });
 
