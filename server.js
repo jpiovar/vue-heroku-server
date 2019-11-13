@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 const mockCredentials = require('./mockData/allowedCredentials.json');
+const mockInitialData = require('./mockData/initialData.json');
 
 
 var cors = require('cors');
@@ -108,6 +109,7 @@ app.get('/api/authenticate', (req, res, next) => {
   let users = mockCredentials;
   const up = users.filter(item => item.name === name && item.password === password);
   console.log('users ', users);
+  console.log('mockInitialData', mockInitialData);
   console.log('up ', up);
   if (up && up.length > 0) {
     res.status(202).json({
@@ -122,6 +124,10 @@ app.get('/api/authenticate', (req, res, next) => {
       statusCase: 'failed',
       msg: 'authentication failed, wrong credentials' });
   }
+});
+
+app.get('/api/initialData', (req, res, next) => {
+  res.status(202).json(mockInitialData);
 });
 
 app.post('/add',function(req, res){
