@@ -130,6 +130,33 @@ app.get('/api/initialData', (req, res, next) => {
   res.status(202).json(mockInitialData);
 });
 
+app.post('/api/authenticate',function(req, res){
+  const credentials = req.body.credentials;
+  console.log('credentials ', credentials);
+  // const params = JSON.parse(credentials);
+  // console.log('authenticate', params);
+  const { name, password } = credentials;
+  console.log(name, ' ', password);
+  let users = mockCredentials;
+  const up = users.filter(item => item.name === name && item.password === password);
+  console.log('users ', users);
+  console.log('mockInitialData', mockInitialData);
+  console.log('up ', up);
+  if (up && up.length > 0) {
+    res.status(202).json({
+      statusCase: 'ok',
+      msg:'authentication done',
+      id: up[0].id,
+      name: up[0].name,
+      email: up[0].email
+    });
+  } else if (up && up.length === 0) {
+    res.status(202).json({
+      statusCase: 'failed',
+      msg: 'authentication failed, wrong credentials' });
+  }
+});
+
 app.post('/add',function(req, res){
   var thing = req.body.thingInput;
   //var thingDoc = new thingModel({thing: thing});
