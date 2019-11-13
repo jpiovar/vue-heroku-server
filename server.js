@@ -101,8 +101,25 @@ app.get('/api/users', (req, res, next) => {
 });
 
 app.get('/api/authenticate', (req, res, next) => {
-  console.log('authenticate', req.query.params);
-  res.status(200).json('authentication done');
+  const params = JSON.parse(req.query.params);
+  console.log('authenticate', params);
+  const { name, password } = params;
+  console.log(name, ' ', password);
+  let users = mockCredentials;
+  const up = users.filter(item => item.name === name && item.password === password);
+  console.log('users ', users);
+  console.log('up ', up);
+  if (up && up.length > 0) {
+    res.status(202).json({
+      statusCase: 'ok',
+      msg:'authentication done',
+      id: up[0].id,
+      name: up[0].name,
+      email: up[0].email
+    });
+  } else {
+    res.status(401).json({ statusCase: 'failed', msg: 'authentication failed' });
+  }
 });
 
 app.post('/add',function(req, res){
