@@ -1,5 +1,6 @@
 var express = require('express');
-// const http = require('http');
+const fs = require('fs');
+const https = require('https');
 var bodyParser = require('body-parser');
 var path = require('path');
 
@@ -214,5 +215,12 @@ app.post('/getRecord',function(req, res){
 
 
 const port = process.env.PORT || 3030;
-app.listen(port);
+const server = https.createServer({
+  key: fs.readFileSync('./https_server.key'),
+  cert: fs.readFileSync('./https_server.cert')
+}, app);
+server.listen(port);
+// HTTP server
+//app.listen(port);
+
 console.log('Listening on port' + port + '...' + __dirname );

@@ -15,8 +15,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "autostart": "nodemon server.js"
+    "start": "./create_https_key_and_cert.sh; node server.js",
+    "autostart": "./create_https_key_and_cert.sh; nodemon server.js"
   },
   "author": "jp"
 }
