@@ -22,3 +22,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+https_server.key
+https_server.cert
