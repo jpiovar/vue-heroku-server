@@ -87,9 +87,14 @@ app.use(bodyParser.json());
 app.get('/city',function(req, res){
      console.log('city');
      res.status(200).sendFile( __dirname + '/public/index.html' );
+    // let users = mockCredentials;
+    // res.status(200).json(users);
 });
 
-
+// server.get('/city',function(req, res){
+//   console.log('city');
+//   res.status(200).sendFile( __dirname + '/public/index.html' );
+// });
 
 app.get('/api/orders', (req, res, next) => {
     console.log('orders');
@@ -221,6 +226,7 @@ const server = https.createServer({
 }, app);
 server.listen(port);
 // HTTP server
-//app.listen(port);
+const httpPort = 3031;
+app.listen(httpPort);
 
 console.log('Listening on port' + port + '...' + __dirname );
